@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Rádio 10uilton</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Oswald:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; width: 100%; }
+
+    body {
+        font-family: 'Oswald', sans-serif;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        background-color: #000;
+    }
+
+    .tela {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        background-image:
+            linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.25) 65%, rgba(0,0,0,0.75) 100%),
+            url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZCH7prFvM2G9qNgNRBBfELa_wpDYHN9RHKXS3U-wmz2BCktB8mFg7ul0OHnTXX-VyK35-3ySRpp2fx-xq-nG7peqCjTTStlzBW1OmiaXqvisbPoc1mrWH1GM-WPXZWCcmkNXvpIsVv9m3dwcNqoLErZR0FZsEbAwki2r6Buq_Q3943b3nOAPZdCdtGb4/s1844/file_0000000019b071f5b40917f998b235c1.png');
+        background-size: cover;
+        background-position: center 75%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4vh 6vw;
+        text-align: center;
+    }
+
+    /* ===== LETREIRO NEON ===== */
+    .letreiro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8vh;
+        margin-top: -1vh;
+    }
+
+    .neon-titulo {
+        font-family: 'Righteous', cursive;
+        font-size: clamp(34px, 11.5vw, 68px);
+        letter-spacing: 2px;
+        line-height: 1.1;
+        color: #fff;
+        white-space: nowrap;
+        animation: piscarNeon 3.6s infinite;
+    }
+
+    .neon-titulo .vermelho {
+        color: #ff2b2b;
+        text-shadow:
+            0 0 5px #fff,
+            0 0 12px #ff2b2b,
+            0 0 22px #ff2b2b,
+            0 0 42px #ff0000,
+            0 0 70px #ff0000;
+    }
+
+    .neon-titulo .amarelo {
+        color: #fff9c4;
+        text-shadow:
+            0 0 5px #fff,
+            0 0 12px #ffd93d,
+            0 0 22px #ffd93d,
+            0 0 42px #ffb100,
+            0 0 70px #ffb100;
+    }
+
+    .neon-frase {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(22px, 6.4vw, 38px);
+        color: #7fffd4;
+        text-shadow:
+            0 0 5px #fff,
+            0 0 10px #4dfff0,
+            0 0 20px #00ffe5,
+            0 0 38px #00e0d0;
+        animation: piscarNeon 3.6s infinite;
+        animation-delay: 0.15s;
+    }
+
+    @keyframes piscarNeon {
+        0%, 92%, 100% { opacity: 1; filter: brightness(1); }
+        94% { opacity: 0.55; filter: brightness(0.7); }
+        96% { opacity: 1; filter: brightness(1.15); }
+        97% { opacity: 0.5; filter: brightness(0.6); }
+        98% { opacity: 1; filter: brightness(1); }
+    }
+
+    /* ===== BOTÕES DE ESCOLHA ===== */
+    .opcoes {
+        display: flex;
+        flex-direction: column;
+        gap: 2.2vh;
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .btn-opcao {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 4vw;
+        padding: 2vh 5vw;
+        border-radius: 16px;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        font-family: 'Oswald', sans-serif;
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-opcao:active { transform: scale(0.97); }
+
+    .btn-opcao.caixa {
+        background: linear-gradient(135deg, rgba(40,10,10,0.75), rgba(10,5,5,0.75));
+        border: 1px solid rgba(255,80,80,0.35);
+        box-shadow: 0 0 18px rgba(255, 40, 40, 0.25), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .btn-opcao.disco {
+        background: linear-gradient(135deg, rgba(45,28,8,0.75), rgba(10,7,3,0.75));
+        border: 1px solid rgba(255,177,0,0.35);
+        box-shadow: 0 0 18px rgba(255, 177, 0, 0.25), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .icone-opcao {
+        flex-shrink: 0;
+        width: clamp(30px, 8vw, 40px);
+        height: clamp(30px, 8vw, 40px);
+        filter: drop-shadow(0 0 6px rgba(255,255,255,0.35));
+    }
+
+    .icone-opcao svg { width: 100%; height: 100%; display: block; }
+
+    .texto-opcao { display: flex; flex-direction: column; }
+
+    .titulo-opcao {
+        color: #fff;
+        font-weight: 700;
+        font-size: clamp(15px, 4.4vw, 19px);
+        letter-spacing: 0.5px;
+    }
+
+    .sub-opcao {
+        color: #cfcfcf;
+        font-size: clamp(11px, 3vw, 13px);
+        margin-top: 2px;
+        opacity: 0.85;
+    }
+
+    /* ===== ÍCONES DE REDES SOCIAIS ===== */
+    .redes {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3.2vw;
+        margin-top: 2.4vh;
+    }
+
+    .rede-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: clamp(38px, 10vw, 48px);
+        height: clamp(38px, 10vw, 48px);
+        border-radius: 50%;
+        background: rgba(10,10,10,0.55);
+        border: 1px solid rgba(127,255,212,0.35);
+        box-shadow: 0 0 10px rgba(0,255,229,0.25), inset 0 0 6px rgba(0,0,0,0.5);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        transition: transform 0.15s ease;
+    }
+
+    .rede-link:active { transform: scale(0.9); }
+
+    .rede-link svg {
+        width: 52%;
+        height: 52%;
+        filter: drop-shadow(0 0 4px rgba(127,255,212,0.7));
+    }
+
+
+</style>
+</head>
+<body>
+
+    <div class="tela">
+
+        <div class="letreiro">
+            <div class="neon-titulo">
+                <span class="vermelho">RÁDIO</span> <span class="amarelo">10UILTON</span>
+            </div>
+            <div class="neon-frase">a nossa apologia é trazer alegria!</div>
+
+            <div class="redes">
+                <a class="rede-link" href="https://www.instagram.com/10uilton" target="_blank" rel="noopener" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="#7fffd4" stroke-width="1.8"/>
+                        <circle cx="12" cy="12" r="4.3" stroke="#7fffd4" stroke-width="1.8"/>
+                        <circle cx="17.4" cy="6.6" r="1.15" fill="#7fffd4"/>
+                    </svg>
+                </a>
+                <a class="rede-link" href="https://www.x.com/10uilton" target="_blank" rel="noopener" aria-label="X (Twitter)">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4l16 16M20 4L4 20" stroke="#7fffd4" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <a class="rede-link" href="https://www.tiktok.com/@10uilton" target="_blank" rel="noopener" aria-label="TikTok">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 3v10.6a3.1 3.1 0 1 1-2.6-3.06V7.5a5.1 5.1 0 1 0 4.6 5.08V9.2a6.8 6.8 0 0 0 4 1.3V7.5a3.9 3.9 0 0 1-3.9-3.9V3h-2.1z" fill="#7fffd4"/>
+                    </svg>
+                </a>
+                <a class="rede-link" href="https://youtube.com/@10uilton" target="_blank" rel="noopener" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2.2" y="5.5" width="19.6" height="13" rx="4" stroke="#7fffd4" stroke-width="1.8"/>
+                        <path d="M10.3 9.3v5.4l4.7-2.7-4.7-2.7z" fill="#7fffd4"/>
+                    </svg>
+                </a>
+                <a class="rede-link" href="https://10uilton.blogspot.com" target="_blank" rel="noopener" aria-label="Blog">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="9.2" stroke="#7fffd4" stroke-width="1.8"/>
+                        <path d="M2.8 12h18.4M12 2.8c2.4 2.6 3.7 5.8 3.7 9.2s-1.3 6.6-3.7 9.2c-2.4-2.6-3.7-5.8-3.7-9.2S9.6 5.4 12 2.8z" stroke="#7fffd4" stroke-width="1.4"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="opcoes">
+            <button class="btn-opcao caixa" onclick="window.location.href='caixa-amplificada.html'">
+                <span class="icone-opcao">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9v6h4l5 5V4L7 9H3z" fill="#ff6666"/>
+                        <path d="M16 8.5c1.2 1 1.9 2.2 1.9 3.5s-.7 2.5-1.9 3.5" stroke="#ff9999" stroke-width="1.6" stroke-linecap="round"/>
+                        <path d="M18.6 6c2 1.6 3.2 3.6 3.2 6s-1.2 4.4-3.2 6" stroke="#ff9999" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="texto-opcao">
+                    <span class="titulo-opcao">Caixa Amplificada</span>
+                    <span class="sub-opcao">Ouça na caixa amplificada</span>
+                </span>
+            </button>
+
+            <button class="btn-opcao disco" onclick="window.location.href='toca-discos.html'">
+                <span class="icone-opcao">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="9.5" fill="#2c2c2c" stroke="#ffb100" stroke-width="1"/>
+                        <circle cx="12" cy="12" r="6.5" fill="none" stroke="#ffb100" stroke-width="0.7" opacity="0.6"/>
+                        <circle cx="12" cy="12" r="4.2" fill="none" stroke="#ffb100" stroke-width="0.7" opacity="0.6"/>
+                        <circle cx="12" cy="12" r="2.4" fill="#c23b2c"/>
+                        <circle cx="12" cy="12" r="0.9" fill="#0a0a0a"/>
+                    </svg>
+                </span>
+                <span class="texto-opcao">
+                    <span class="titulo-opcao">Toca-Discos</span>
+                    <span class="sub-opcao">Ouça no toca-discos retrô</span>
+                </span>
+            </button>
+        </div>
+
+    </div>
+
+</body>
+</html>
