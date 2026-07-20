@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Rádio 10uilton</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Oswald:wght@500;700&family=Great+Vibes&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; width: 100%; }
+
+    body {
+        font-family: 'Oswald', sans-serif;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        background-color: #000;
+    }
+
+    /* ============================================================
+       TELA MENU (index.html)
+       ============================================================ */
+    #tela-menu {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        background-image:
+            linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.25) 65%, rgba(0,0,0,0.75) 100%),
+            url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZCH7prFvM2G9qNgNRBBfELa_wpDYHN9RHKXS3U-wmz2BCktB8mFg7ul0OHnTXX-VyK35-3ySRpp2fx-xq-nG7peqCjTTStlzBW1OmiaXqvisbPoc1mrWH1GM-WPXZWCcmkNXvpIsVv9m3dwcNqoLErZR0FZsEbAwki2r6Buq_Q3943b3nOAPZdCdtGb4/s1844/file_0000000019b071f5b40917f998b235c1.png');
+        background-size: cover;
+        background-position: center 75%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4vh 6vw;
+        text-align: center;
+    }
+
+    /* estrelas cintilando no painel inteiro */
+    #tela-menu::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image:
+            radial-gradient(1.4px 1.4px at 8% 10%, #fff, transparent),
+            radial-gradient(1.2px 1.2px at 18% 6%, #fff, transparent),
+            radial-gradient(1.6px 1.6px at 30% 14%, #fff, transparent),
+            radial-gradient(1.2px 1.2px at 42% 5%, #fff, transparent),
+            radial-gradient(1.4px 1.4px at 55% 12%, #fff, transparent),
+            radial-gradient(1.2px 1.2px at 66% 7%, #fff, transparent),
+            radial-gradient(1.6px 1.6px at 78% 15%, #fff, transparent),
+            radial-gradient(1.2px 1.2px at 88% 8%, #fff, transparent),
+            radial-gradient(1.4px 1.4px at 95% 18%, #fff, transparent),
+            radial-gradient(1.2px 1.2px at 12% 22%, #fff, transparent),
+            radial-gradient(1.4px 1.4px at 60% 20%, #fff, transparent),
+            radial-gradient(1.2px 1.2px at 25% 25%, #fff, transparent);
+        opacity: 0.6;
+        animation: cintilarEstrelas 3.4s ease-in-out infinite;
+    }
+
+    @keyframes cintilarEstrelas {
+        0%, 100% { opacity: 0.35; }
+        50% { opacity: 0.85; }
+    }
+
+    #tela-menu .letreiro,
+    #tela-menu .opcoes {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* espaço da logo: mantém o mesmo tamanho/posição de antes */
+    #tela-menu .logo-radio-wrap {
+        position: relative;
+        z-index: 2;
+        margin-bottom: 0.4vh;
+        width: clamp(84px, 24vw, 130px);
+        height: clamp(84px, 24vw, 130px);
+    }
+
+    /* pequeno badge circular com skyline, só atrás da logo (não mais o painel inteiro) */
+    #tela-menu .logo-skyline-badge {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 128%;
+        height: 128%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        overflow: hidden;
+        z-index: 0;
+        pointer-events: none;
+        background-color: #0b0e18;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgMTMwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj4KICA8cmVjdCB4PSIwIiB5PSI0MCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjkwIiBmaWxsPSIjMGIwZTE4Ii8+CiAgPHJlY3QgeD0iMzQiIHk9IjYwIiB3aWR0aD0iMjIiIGhlaWdodD0iNzAiIGZpbGw9IiMxMDEzMWYiLz4KICA8cmVjdCB4PSI2MCIgeT0iMjAiIHdpZHRoPSIyNiIgaGVpZ2h0PSIxMTAiIGZpbGw9IiMwYjBlMTgiLz4KICA8cmVjdCB4PSI5MCIgeT0iNTAiIHdpZHRoPSIxOCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzBlMTEyMCIvPgogIDxyZWN0IHg9IjExMiIgeT0iMTAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiMwYjBlMTgiLz4KICA8cmVjdCB4PSIxNDYiIHk9IjQ1IiB3aWR0aD0iMjAiIGhlaWdodD0iODUiIGZpbGw9IiMxMDEzMWYiLz4KICA8cmVjdCB4PSIxNzAiIHk9IjAiIHdpZHRoPSIzNCIgaGVpZ2h0PSIxMzAiIGZpbGw9IiMwYTBkMTciLz4KICA8cmVjdCB4PSIyMDgiIHk9IjU1IiB3aWR0aD0iMjIiIGhlaWdodD0iNzUiIGZpbGw9IiMwZTExMjAiLz4KICA8cmVjdCB4PSIyMzQiIHk9IjI1IiB3aWR0aD0iMjgiIGhlaWdodD0iMTA1IiBmaWxsPSIjMGIwZTE4Ii8+CiAgPHJlY3QgeD0iMjY2IiB5PSI2NSIgd2lkdGg9IjE4IiBoZWlnaHQ9IjY1IiBmaWxsPSIjMTAxMzFmIi8+CiAgPHJlY3QgeD0iMjg4IiB5PSIxNSIgd2lkdGg9IjMwIiBoZWlnaHQ9IjExNSIgZmlsbD0iIzBhMGQxNyIvPgogIDxyZWN0IHg9IjMyMiIgeT0iNDgiIHdpZHRoPSIyMiIgaGVpZ2h0PSI4MiIgZmlsbD0iIzBlMTEyMCIvPgogIDxyZWN0IHg9IjM0OCIgeT0iMzAiIHdpZHRoPSIyNiIgaGVpZ2h0PSIxMDAiIGZpbGw9IiMwYjBlMTgiLz4KICA8cmVjdCB4PSIzNzgiIHk9IjU4IiB3aWR0aD0iMjIiIGhlaWdodD0iNzIiIGZpbGw9IiMxMDEzMWYiLz4KICA8ZyBmaWxsPSIjZmZkNzZhIj4KICAgIDxyZWN0IHg9IjYiIHk9IjUwIiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMTQiIHk9IjUwIiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iNiIgeT0iNjIiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz48cmVjdCB4PSIxNCIgeT0iNzQiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz4KICAgIDxyZWN0IHg9IjQwIiB5PSI3MCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjQ4IiB5PSI4MiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjQwIiB5PSI5NCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgogICAgPHJlY3QgeD0iNjYiIHk9IjMyIiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iNzYiIHk9IjQ0IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iNjYiIHk9IjU2IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iNzYiIHk9IjY4IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iNjYiIHk9IjkwIiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+CiAgICA8cmVjdCB4PSI5NiIgeT0iNjAiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz48cmVjdCB4PSI5NiIgeT0iNzQiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz48cmVjdCB4PSI5NiIgeT0iMTAwIiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+CiAgICA8cmVjdCB4PSIxMTgiIHk9IjIyIiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMTI4IiB5PSIzNCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjExOCIgeT0iNDYiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz48cmVjdCB4PSIxMjgiIHk9IjU4IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMTE4IiB5PSI4MCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjEyOCIgeT0iMTAwIiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+CiAgICA8cmVjdCB4PSIxNTIiIHk9IjU2IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMTU4IiB5PSI3MCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjE1MiIgeT0iOTQiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz4KICAgIDxyZWN0IHg9IjE3OCIgeT0iMTIiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz48cmVjdCB4PSIxOTAiIHk9IjI0IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMTc4IiB5PSIzOCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjE5MCIgeT0iNTIiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz48cmVjdCB4PSIxNzgiIHk9IjcwIiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMTkwIiB5PSI5MCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgogICAgPHJlY3QgeD0iMjE0IiB5PSI2NiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjIyMiIgeT0iODAiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz48cmVjdCB4PSIyMTQiIHk9IjEwMiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgogICAgPHJlY3QgeD0iMjQwIiB5PSIzNiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjI1MCIgeT0iNTAiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz48cmVjdCB4PSIyNDAiIHk9IjY0IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMjUwIiB5PSI4NiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgogICAgPHJlY3QgeD0iMjcyIiB5PSI3NiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjI3MiIgeT0iOTYiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz4KICAgIDxyZWN0IHg9IjI5NCIgeT0iMjYiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz48cmVjdCB4PSIzMDQiIHk9IjQwIiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMjk0IiB5PSI1NCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjMwNCIgeT0iNzIiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz48cmVjdCB4PSIyOTQiIHk9Ijk0IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+CiAgICA8cmVjdCB4PSIzMjgiIHk9IjU4IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMzM2IiB5PSI3MiIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjMyOCIgeT0iOTQiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz4KICAgIDxyZWN0IHg9IjM1NCIgeT0iNDIiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz48cmVjdCB4PSIzNjQiIHk9IjU2IiB3aWR0aD0iMyIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMzU0IiB5PSI3OCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPgogICAgPHJlY3QgeD0iMzg0IiB5PSI2OCIgd2lkdGg9IjMiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjM4NCIgeT0iOTAiIHdpZHRoPSIzIiBoZWlnaHQ9IjQiLz4KICA8L2c+Cjwvc3ZnPgo=');
+        background-size: 220% 220%;
+        background-position: center 62%;
+        background-repeat: repeat-x;
+        opacity: 0.85;
+    }
+
+    /* esmaece as bordas do badge pra ele se fundir no fundo do menu */
+    #tela-menu .logo-skyline-badge::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: radial-gradient(circle, transparent 46%, rgba(0,0,0,0.55) 78%, rgba(0,0,0,0.9) 100%);
+    }
+
+    #tela-menu .logo-radio {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow:
+            0 0 12px 2px rgba(255,255,255,0.55),
+            0 0 26px 6px rgba(255,60,60,0.55),
+            0 0 46px 12px rgba(255,177,0,0.4);
+        animation: pulsarLogo 2.6s ease-in-out infinite;
+    }
+
+    #tela-menu .logo-radio img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    @keyframes pulsarLogo {
+        0%, 100% {
+            box-shadow:
+                0 0 12px 2px rgba(255,255,255,0.55),
+                0 0 26px 6px rgba(255,60,60,0.55),
+                0 0 46px 12px rgba(255,177,0,0.4);
+        }
+        50% {
+            box-shadow:
+                0 0 18px 4px rgba(255,255,255,0.85),
+                0 0 38px 10px rgba(255,60,60,0.75),
+                0 0 66px 18px rgba(255,177,0,0.6);
+        }
+    }
+
+    /* reflexo de luz que varre o logo periodicamente */
+    #tela-menu .logo-brilho-varredura {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        pointer-events: none;
+        background: linear-gradient(115deg,
+            transparent 30%,
+            rgba(255,255,255,0.75) 48%,
+            rgba(255,255,255,0.9) 52%,
+            transparent 70%);
+        transform: translateX(-140%);
+        animation: varrerLogo 3.6s ease-in-out infinite;
+    }
+
+    @keyframes varrerLogo {
+        0%   { transform: translateX(-140%); }
+        22%  { transform: translateX(140%); }
+        100% { transform: translateX(140%); }
+    }
+
+    #tela-menu .letreiro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8vh;
+        margin-top: -1vh;
+    }
+
+    #tela-menu .neon-titulo {
+        font-family: 'Righteous', cursive;
+        font-size: clamp(34px, 11.5vw, 68px);
+        letter-spacing: 2px;
+        line-height: 1.1;
+        color: #fff;
+        white-space: nowrap;
+        animation: piscarNeon 3.6s infinite;
+    }
+
+    #tela-menu .neon-titulo .vermelho {
+        color: #ff2b2b;
+        text-shadow:
+            0 0 5px #fff,
+            0 0 12px #ff2b2b,
+            0 0 22px #ff2b2b,
+            0 0 42px #ff0000,
+            0 0 70px #ff0000;
+    }
+
+    #tela-menu .neon-titulo .amarelo {
+        color: #fff9c4;
+        text-shadow:
+            0 0 5px #fff,
+            0 0 12px #ffd93d,
+            0 0 22px #ffd93d,
+            0 0 42px #ffb100,
+            0 0 70px #ffb100;
+    }
+
+    #tela-menu .neon-frase {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(22px, 6.4vw, 38px);
+        color: #7fffd4;
+        text-shadow:
+            0 0 5px #fff,
+            0 0 10px #4dfff0,
+            0 0 20px #00ffe5,
+            0 0 38px #00e0d0;
+        animation: piscarNeon 3.6s infinite;
+        animation-delay: 0.15s;
+    }
+
+    @keyframes piscarNeon {
+        0%, 92%, 100% { opacity: 1; filter: brightness(1); }
+        94% { opacity: 0.55; filter: brightness(0.7); }
+        96% { opacity: 1; filter: brightness(1.15); }
+        97% { opacity: 0.5; filter: brightness(0.6); }
+        98% { opacity: 1; filter: brightness(1); }
+    }
+
+    #tela-menu .opcoes {
+        display: flex;
+        flex-direction: column;
+        gap: 2.2vh;
+        width: 100%;
+        max-width: 420px;
+    }
+
+    #tela-menu .btn-opcao {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 4vw;
+        padding: 2vh 5vw;
+        border-radius: 16px;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        font-family: 'Oswald', sans-serif;
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    #tela-menu .btn-opcao:active { transform: scale(0.97); }
+
+    /* reflexo de brilho passando pelo botão */
+    #tela-menu .btn-opcao {
+        overflow: hidden;
+    }
+
+    #tela-menu .btn-opcao::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -60%;
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(115deg,
+            transparent 0%,
+            rgba(255,255,255,0.22) 45%,
+            rgba(255,255,255,0.4) 50%,
+            rgba(255,255,255,0.22) 55%,
+            transparent 100%);
+        transform: skewX(-20deg);
+        pointer-events: none;
+        animation: brilhoBotao 4.5s ease-in-out infinite;
+    }
+
+    #tela-menu .btn-opcao.disco::before {
+        animation-delay: 0.5s;
+    }
+
+    @keyframes brilhoBotao {
+        0%, 55% { left: -60%; }
+        75%, 100% { left: 140%; }
+    }
+
+    #tela-menu .btn-opcao.caixa {
+        background: linear-gradient(135deg, rgba(40,10,10,0.75), rgba(10,5,5,0.75));
+        border: 1px solid rgba(255,80,80,0.35);
+        box-shadow: 0 0 18px rgba(255, 40, 40, 0.25), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    #tela-menu .btn-opcao.disco {
+        background: linear-gradient(135deg, rgba(45,28,8,0.75), rgba(10,7,3,0.75));
+        border: 1px solid rgba(255,177,0,0.35);
+        box-shadow: 0 0 18px rgba(255, 177, 0, 0.25), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    #tela-menu .icone-opcao {
+        flex-shrink: 0;
+        width: clamp(30px, 8vw, 40px);
+        height: clamp(30px, 8vw, 40px);
+        filter: drop-shadow(0 0 6px rgba(255,255,255,0.35));
+    }
+
+    #tela-menu .icone-opcao svg { width: 100%; height: 100%; display: block; }
+
+    #tela-menu .texto-opcao { display: flex; flex-direction: column; }
+
+    #tela-menu .titulo-opcao {
+        color: #fff;
+        font-weight: 700;
+        font-size: clamp(15px, 4.4vw, 19px);
+        letter-spacing: 0.5px;
+    }
+
+    #tela-menu .sub-opcao {
+        color: #cfcfcf;
+        font-size: clamp(11px, 3vw, 13px);
+        margin-top: 2px;
+        opacity: 0.85;
+    }
+
+    #tela-menu .redes {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3.2vw;
+        margin-top: -1vh;
+    }
+
+    #tela-menu .rede-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: clamp(30px, 8vw, 38px);
+        height: clamp(30px, 8vw, 38px);
+        border-radius: 50%;
+        background: rgba(10,10,10,0.55);
+        border: 1px solid rgba(127,255,212,0.35);
+        box-shadow: 0 0 10px rgba(0,255,229,0.25), inset 0 0 6px rgba(0,0,0,0.5);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        transition: transform 0.15s ease;
+    }
+
+    #tela-menu .rede-link:active { transform: scale(0.9); }
+
+    #tela-menu .rede-link svg {
+        width: 52%;
+        height: 52%;
+        filter: drop-shadow(0 0 4px rgba(127,255,212,0.7));
+    }
+
+    /* ============================================================
+       TELA CAIXA AMPLIFICADA (caixa-amplificada.html)
+       ============================================================ */
+    #tela-caixa {
+        background-color: #0c0c0c;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #tela-caixa .caixa-som {
+        background:
+            radial-gradient(ellipse at 50% -10%, rgba(255,255,255,0.06), transparent 55%),
+            radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0,0,0,0.35) 100%),
+            repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 2.5px),
+            repeating-linear-gradient(45deg, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 1px, transparent 1px, transparent 2.5px),
+            repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 4px),
+            radial-gradient(circle at 22% 65%, rgba(255,255,255,0.02), transparent 3%),
+            radial-gradient(circle at 68% 30%, rgba(255,255,255,0.015), transparent 4%),
+            linear-gradient(160deg, #24211d, #14120f 45%, #0a0908 100%);
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        padding: 3vh 6vw;
+        box-shadow: inset 0 0 70px rgba(0,0,0,0.7), inset 0 0 40px rgba(255,255,255,0.03);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+    #tela-caixa .painel-topo {
+        background-color: #050505;
+        width: 100%;
+        max-width: 480px;
+        padding: 2.5vh 4vw;
+        border-radius: 12px;
+        border: 2px solid #222;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.02);
+        margin-top: calc(58px + env(safe-area-inset-top));
+    }
+
+    #tela-caixa .marca {
+        color: #ff3333;
+        font-size: clamp(16px, 5vw, 26px);
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-shadow: 0 0 8px rgba(255, 51, 51, 0.6);
+        margin-bottom: 1.5vh;
+    }
+
+    #tela-caixa .led-digital {
+        background-color: #000;
+        border: 2px solid #111;
+        font-family: 'Courier New', Courier, monospace;
+        color: #00ff00;
+        font-size: clamp(11px, 3.2vw, 16px);
+        padding: 8px;
+        border-radius: 5px;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
+        overflow: hidden;
+        white-space: nowrap;
+        transition: color 0.3s, box-shadow 0.3s;
+    }
+
+    #tela-caixa .led-desligado {
+        color: #003300 !important;
+        text-shadow: none !important;
+    }
+
+    #tela-caixa .alto-falantes {
+        display: flex;
+        flex-direction: column;
+        gap: 2.2vh;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+        max-width: 320px;
+        padding: 2.5vh 4vw;
+        border-radius: 16px;
+        background:
+            radial-gradient(circle, rgba(0,0,0,0.75) 1.1px, transparent 1.3px) 0 0/9px 9px,
+            linear-gradient(180deg, #131313, #070707 60%, #030303);
+        box-shadow:
+            inset 0 0 24px rgba(0,0,0,0.85),
+            inset 0 2px 3px rgba(255,255,255,0.04),
+            0 1px 0 rgba(255,255,255,0.03);
+        border: 1px solid #050505;
+    }
+
+    #tela-caixa .anel-luz {
+        position: relative;
+        width: min(52vw, 24vh, 220px);
+        height: min(52vw, 24vh, 220px);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 7px;
+        transition: box-shadow 0.4s ease;
+    }
+
+    /* halo suave que sangra pra fora do anel quando ativo */
+    #tela-caixa .anel-luz.ativo {
+        box-shadow:
+            0 0 calc(10px + var(--glow, 0) * 26px) calc(1px + var(--glow, 0) * 8px) var(--cor-luz, rgba(255,60,60,0.55)),
+            0 0 calc(30px + var(--glow, 0) * 60px) calc(6px + var(--glow, 0) * 18px) var(--cor-luz, rgba(255,60,60,0.35));
+    }
+
+    /* parafusos realistas no aro externo do woofer */
+    #tela-caixa .anel-luz::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 2;
+        background:
+            radial-gradient(circle 2.6px at 50% 3%, #8a8a8a 0%, #8a8a8a 35%, #2a2a2a 60%, transparent 72%),
+            radial-gradient(circle 2.6px at 97% 50%, #8a8a8a 0%, #8a8a8a 35%, #2a2a2a 60%, transparent 72%),
+            radial-gradient(circle 2.6px at 50% 97%, #8a8a8a 0%, #8a8a8a 35%, #2a2a2a 60%, transparent 72%),
+            radial-gradient(circle 2.6px at 3% 50%, #8a8a8a 0%, #8a8a8a 35%, #2a2a2a 60%, transparent 72%),
+            radial-gradient(circle 1px at 50% 3%, #1a1a1a 50%, transparent 55%),
+            radial-gradient(circle 1px at 97% 50%, #1a1a1a 50%, transparent 55%),
+            radial-gradient(circle 1px at 50% 97%, #1a1a1a 50%, transparent 55%),
+            radial-gradient(circle 1px at 3% 50%, #1a1a1a 50%, transparent 55%);
+    }
+
+    /* anel fino de luz corrida (estilo caixa de som RGB), em vez das 8 bolhas */
+    #tela-caixa .anel-luz::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        pointer-events: none;
+        padding: 3px;
+        box-sizing: border-box;
+        background: conic-gradient(from 0deg,
+            transparent 0deg,
+            var(--cor-luz, #ff3333) 35deg,
+            #fff 55deg,
+            var(--cor-luz, #ff3333) 75deg,
+            transparent 145deg,
+            transparent 215deg,
+            var(--cor-luz, #ff3333) 285deg,
+            #fff 305deg,
+            var(--cor-luz, #ff3333) 325deg,
+            transparent 360deg);
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        filter: blur(1.5px);
+        mix-blend-mode: screen;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        animation: girarCaixa 2.4s linear infinite;
+    }
+
+    #tela-caixa .anel-luz.ativo::before {
+        opacity: var(--glow, 0.55);
+    }
+
+    @keyframes girarCaixa {
+        to { transform: rotate(360deg); }
+    }
+
+    #tela-caixa .bocao {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(155deg, #3d3d3d, #232323 40%, #101010 100%);
+        border-radius: 50%;
+        border: 5px solid #3a3a3a;
+        box-shadow: 0 6px 14px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.04);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        transition: box-shadow 0.15s ease, border-color 0.3s;
+    }
+
+    #tela-caixa .bocao.ativo {
+        border-color: #555;
+        box-shadow:
+            0 6px 14px rgba(0,0,0,0.5),
+            inset 0 0 0 1px rgba(255,255,255,0.04),
+            0 0 calc(10px + var(--glow, 0) * 30px) calc(2px + var(--glow, 0) * 10px) var(--cor-luz, rgba(255,60,60,0.6));
+    }
+
+    /* espuma de suspensão (surround) entre a cesta e o cone */
+    #tela-caixa .bocao::before {
+        content: "";
+        position: absolute;
+        width: 88%;
+        height: 88%;
+        border-radius: 50%;
+        background: radial-gradient(circle, transparent 78%, #1c1c1c 79%, #333 84%, #0c0c0c 89%, transparent 90%);
+        box-shadow: inset 0 3px 5px rgba(0,0,0,0.55), inset 0 -1px 2px rgba(255,255,255,0.05);
+        pointer-events: none;
+    }
+
+    #tela-caixa .cone {
+        width: 74%;
+        height: 74%;
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background:
+            radial-gradient(circle at 38% 30%, rgba(255,255,255,0.10), transparent 45%),
+            repeating-conic-gradient(from 0deg, rgba(0,0,0,0.08) 0deg 2deg, transparent 2deg 8deg),
+            radial-gradient(circle, #2b2622 0%, #1c1815 45%, #100d0b 78%, #050403 100%);
+        box-shadow: inset 0 4px 8px rgba(0,0,0,0.65), inset 0 -2px 4px rgba(255,255,255,0.04);
+    }
+
+    #tela-caixa .calota-central {
+        width: 32%;
+        height: 32%;
+        background: radial-gradient(circle at 36% 30%, #6b6b6b, #333 45%, #0a0a0a 85%);
+        border-radius: 50%;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.65), inset 0 1px 2px rgba(255,255,255,0.15);
+    }
+
+    @keyframes pulsar {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.03); }
+    }
+
+    #tela-caixa .pulsando {
+        animation: pulsar 0.12s infinite alternate;
+    }
+
+    #tela-caixa .controles {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 480px;
+        background-color: #151515;
+        padding: 1.8vh 4vw;
+        border-radius: 12px;
+        border: 1px solid #252525;
+        position: relative;
+    }
+
+    #tela-caixa .controles::before,
+    #tela-caixa .controles::after {
+        content: "";
+        position: absolute;
+        bottom: -7px;
+        width: 34px;
+        height: 7px;
+        border-radius: 0 0 6px 6px;
+        background: linear-gradient(180deg, #1c1c1c, #050505);
+        box-shadow: inset 0 -2px 2px rgba(0,0,0,0.6), 0 2px 3px rgba(0,0,0,0.5);
+    }
+    #tela-caixa .controles::before { left: 14px; }
+    #tela-caixa .controles::after { right: 14px; }
+
+    #tela-caixa .btn {
+        cursor: pointer;
+        border: none;
+        font-weight: bold;
+        transition: all 0.2s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #tela-caixa .btn-energia {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 34% 28%, #ff7a6a 0%, #e5271f 32%, #b30f0f 62%, #650707 100%);
+        box-shadow:
+            0 0 0 2px #140404,
+            0 4px 8px rgba(0,0,0,0.55),
+            inset 0 -5px 8px rgba(0,0,0,0.5),
+            inset 0 4px 6px rgba(255,255,255,0.28);
+        z-index: 1;
+        transition: transform 0.16s cubic-bezier(.34,1.56,.64,1), box-shadow 0.16s ease;
+    }
+
+    /* anel metálico atrás do botão, tipo bezel de botão físico */
+    #tela-caixa .btn-energia::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        z-index: -1;
+        background: conic-gradient(from 210deg, #fdfdfd, #9c9c9c 12%, #f2f2f2 25%, #7d7d7d 42%, #e8e8e8 55%, #8c8c8c 70%, #fafafa 85%, #9c9c9c 100%);
+        box-shadow: 0 0 0 1.5px #000, 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    /* brilho superior no botão vermelho */
+    #tela-caixa .btn-energia::after {
+        content: "";
+        position: absolute;
+        top: 10%;
+        left: 18%;
+        width: 58%;
+        height: 24%;
+        background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0));
+        border-radius: 50%;
+        filter: blur(1.2px);
+        transform: rotate(-10deg);
+        pointer-events: none;
+    }
+
+    #tela-caixa .btn-energia svg {
+        position: relative;
+        z-index: 1;
+        width: 46%;
+        height: 46%;
+    }
+
+    #tela-caixa .btn-energia svg path {
+        stroke: #260a0a;
+    }
+
+    #tela-caixa .btn-energia.pressionando,
+    #tela-caixa .btn-energia:active {
+        transform: scale(0.87) translateY(2px);
+        box-shadow:
+            0 0 0 2px #140404,
+            0 1px 3px rgba(0,0,0,0.5),
+            inset 0 -2px 4px rgba(0,0,0,0.6),
+            inset 0 2px 3px rgba(255,255,255,0.12);
+    }
+
+    #tela-caixa .grupo-volume {
+        display: flex;
+        gap: 12px;
+    }
+
+    #tela-caixa .btn-vol {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #444, #222);
+        color: #fff;
+        font-size: 18px;
+        box-shadow: 0 4px 0 #111;
+    }
+
+    #tela-caixa .btn-vol:active {
+        transform: translateY(4px);
+        box-shadow: none;
+    }
+
+    #tela-caixa .btn-voltar {
+        position: absolute;
+        top: max(14px, env(safe-area-inset-top));
+        left: 14px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(20,20,20,0.8);
+        color: #ccc;
+        border: 1px solid #2c2c2c;
+        border-radius: 20px;
+        padding: 8px 14px 8px 10px;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        backdrop-filter: blur(4px);
+    }
+
+    #tela-caixa .btn-voltar:active { transform: scale(0.96); }
+
+    #tela-caixa .btn-timer {
+        position: absolute;
+        top: max(14px, env(safe-area-inset-top));
+        right: 14px;
+        z-index: 10;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(20,20,20,0.8);
+        color: #ccc;
+        border: 1px solid #2c2c2c;
+        border-radius: 50%;
+        cursor: pointer;
+        backdrop-filter: blur(4px);
+    }
+    #tela-caixa .btn-timer svg { width: 19px; height: 19px; }
+    #tela-caixa .btn-timer.ativo {
+        border-color: #4d64ff;
+        box-shadow: 0 0 8px 2px rgba(77,100,255,0.55);
+    }
+    #tela-caixa .btn-timer:active { transform: scale(0.94); }
+
+    #tela-caixa .timer-badge {
+        position: absolute;
+        bottom: -9px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #4d64ff;
+        color: #fff;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 8px;
+        white-space: nowrap;
+        display: none;
+    }
+
+    #tela-caixa .timer-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        background: rgba(0,0,0,0.65);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    #tela-caixa .timer-overlay.aberto { display: flex; }
+
+    #tela-caixa .timer-modal {
+        width: 100%;
+        max-width: 320px;
+        background: linear-gradient(160deg, #1c1c1c, #0d0d0d);
+        border: 1px solid #2c2c2c;
+        border-radius: 14px;
+        padding: 22px 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    #tela-caixa .timer-modal h3 {
+        color: #ff3333;
+        font-size: 16px;
+        letter-spacing: 1px;
+        font-weight: bold;
+        margin-bottom: 4px;
+        text-shadow: 0 0 8px rgba(255,51,51,0.5);
+    }
+
+    #tela-caixa .timer-status {
+        font-family: 'Courier New', Courier, monospace;
+        color: #999;
+        font-size: 12px;
+        margin-bottom: 16px;
+        min-height: 16px;
+    }
+
+    #tela-caixa .timer-opcoes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+    #tela-caixa .timer-opcoes button {
+        padding: 12px 0;
+        border-radius: 8px;
+        border: none;
+        background: linear-gradient(135deg, #444, #222);
+        color: #fff;
+        font-weight: bold;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    #tela-caixa .timer-opcoes button:active { transform: scale(0.96); }
+
+    #tela-caixa .timer-cancelar {
+        width: 100%;
+        padding: 10px 0;
+        border-radius: 8px;
+        border: 1px solid #6b2222;
+        background: transparent;
+        color: #ff6b6b;
+        font-weight: bold;
+        font-size: 13px;
+        cursor: pointer;
+        margin-bottom: 8px;
+    }
+    #tela-caixa .timer-cancelar:disabled {
+        opacity: .35;
+        cursor: default;
+    }
+
+    #tela-caixa .timer-fechar {
+        width: 100%;
+        padding: 10px 0;
+        border-radius: 8px;
+        border: 1px solid #2c2c2c;
+        background: transparent;
+        color: #999;
+        font-size: 13px;
+        cursor: pointer;
+    }
+
+    /* ============================================================
+       TELA TOCA-DISCOS (toca-discos.html)
+       ============================================================ */
+    #tela-disco {
+        font-family: 'Oswald', sans-serif;
+        height: 100vh;
+        height: 100dvh;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background: #0a0704;
+        width: 100vw;
+        position: relative;
+    }
+
+    #tela-disco .movel {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        padding: 2vh 5vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background:
+            /* nós da madeira */
+            radial-gradient(ellipse 14px 34px at 18% 28%, rgba(30,15,5,0.45), transparent 70%),
+            radial-gradient(ellipse 10px 26px at 82% 68%, rgba(30,15,5,0.4), transparent 70%),
+            radial-gradient(ellipse 8px 20px at 64% 12%, rgba(30,15,5,0.3), transparent 70%),
+            /* poros/textura fina */
+            repeating-linear-gradient(97deg,
+                rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px,
+                transparent 1px, transparent 3px),
+            /* veios ondulados da madeira */
+            repeating-linear-gradient(93deg,
+                #5a3820 0px, #6b4527 3px, #4a2d18 7px, #7a4f2c 11px,
+                #563416 15px, #6f4726 20px, #43290f 26px, #78502e 33px,
+                #5a3820 40px),
+            /* variação tonal geral + verniz */
+            linear-gradient(100deg, #4d2f18 0%, #6b4527 30%, #563416 55%, #7a4f2c 78%, #4a2d18 100%),
+            radial-gradient(ellipse at 50% -10%, rgba(255,210,150,0.10), transparent 60%);
+        background-blend-mode: normal, normal, normal, overlay, normal, normal, normal;
+        box-shadow: inset 0 0 18vw rgba(0,0,0,0.55);
+    }
+
+    #tela-disco .movel::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.45) 100%);
+        z-index: 3;
+    }
+
+    #tela-disco .luz-ambiente {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(ellipse 70% 45% at 50% 8%, rgba(255,170,60,0.16), transparent 70%);
+        opacity: 0;
+        transition: opacity 1.2s ease;
+        z-index: 1;
+    }
+    #tela-disco .luz-ambiente.acesa { opacity: 1; animation: respirar 4s ease-in-out infinite; }
+    @keyframes respirar { 0%,100% { opacity: .85; } 50% { opacity: 1; } }
+
+    #tela-disco .painel-led {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 480px;
+        background: linear-gradient(160deg, #3a3a3a, #161616 60%, #050505);
+        border: 2px solid #1a1a1a;
+        border-radius: 10px;
+        padding: 1.4vh 4vw;
+        box-shadow:
+            0 3px 0 rgba(0,0,0,0.6),
+            inset 0 1px 0 rgba(255,255,255,0.08),
+            inset 0 -6px 10px rgba(0,0,0,0.5);
+        margin-top: calc(58px + env(safe-area-inset-top));
+    }
+
+    #tela-disco .cabecalho-painel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: .9vh;
+    }
+
+    #tela-disco .marca {
+        font-family: 'Righteous', cursive;
+        text-align: center;
+        color: #d99a3d;
+        font-size: clamp(14px, 4.4vw, 22px);
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px rgba(255,178,60,0.45);
+    }
+
+    #tela-disco .piloto {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #3a0808;
+        flex-shrink: 0;
+        transition: background .3s, box-shadow .3s;
+    }
+    #tela-disco .piloto.aceso {
+        background: #ff5b3d;
+        box-shadow: 0 0 5px 2px rgba(255,91,61,.85);
+        animation: piscar 2.4s ease-in-out infinite;
+    }
+    @keyframes piscar { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
+
+    #tela-disco .visor {
+        background: #100b02;
+        border-radius: 5px;
+        border: 1px solid #2a1c08;
+        padding: 7px 6px;
+        box-shadow: inset 0 0 12px rgba(255,150,0,0.15);
+        overflow: hidden;
+    }
+
+    #tela-disco .led-texto {
+        font-family: 'Share Tech Mono', monospace;
+        text-align: center;
+        font-size: clamp(9px, 2.8vw, 14px);
+        letter-spacing: 2px;
+        color: #ffb100;
+        text-shadow: 0 0 6px rgba(255,177,0,0.85), 0 0 14px rgba(255,140,0,0.4);
+        white-space: nowrap;
+        transition: color .3s, text-shadow .3s;
+    }
+
+    #tela-disco .led-off { color: #3a2606 !important; text-shadow: none !important; }
+
+    @keyframes flicker {
+        0% { opacity: .2; } 15% { opacity: 1; } 30% { opacity: .3; }
+        45% { opacity: 1; } 60% { opacity: .5; } 100% { opacity: 1; }
+    }
+    #tela-disco .led-texto.piscando { animation: flicker .55s steps(2, end) 1; }
+
+    #tela-disco .equalizador {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 3px;
+        height: 14px;
+        margin-top: 6px;
+    }
+    #tela-disco .equalizador span {
+        width: 4px;
+        height: 20%;
+        background: linear-gradient(180deg, #ffce54, #ff7a1a);
+        border-radius: 1px;
+        transition: height .12s ease;
+        opacity: .25;
+    }
+    #tela-disco .equalizador span.on { opacity: 1; }
+
+    #tela-disco .pratos {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3.6vh;
+        padding: .5vh 0;
+    }
+
+    #tela-disco .toca-disco {
+        position: relative;
+        width: min(42vw, 27vh, 220px);
+        height: min(42vw, 27vh, 220px);
+    }
+
+    #tela-disco .base-prato {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, #4a4a4a, #1c1c1c 55%, #0a0a0a 100%);
+        box-shadow:
+            0 10px 18px rgba(0,0,0,0.55),
+            inset 0 0 0 2px rgba(255,255,255,0.06);
+    }
+
+    #tela-disco .feltro {
+        position: absolute;
+        inset: 5%;
+        border-radius: 50%;
+        background: radial-gradient(circle, #7a1f1f 0%, #5c1414 70%, #3d0d0d 100%);
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.6);
+    }
+
+    #tela-disco .vinil {
+        position: absolute;
+        inset: 10%;
+        border-radius: 50%;
+        background:
+            repeating-radial-gradient(circle at 50% 50%,
+                #161616 0px, #161616 2px, #0b0b0b 3px, #0b0b0b 4px),
+            radial-gradient(circle at 38% 32%, rgba(255,255,255,0.10), transparent 45%);
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.6), 0 6px 14px rgba(0,0,0,0.6);
+        animation: girar 1.8s linear infinite;
+        animation-play-state: paused;
+    }
+    #tela-disco .vinil.acelerando { animation: girar 3s linear infinite; animation-play-state: running; }
+    #tela-disco .vinil.tocando { animation: girar 1.8s linear infinite; animation-play-state: running; }
+
+    #tela-disco .brilho-vinil {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: conic-gradient(from 0deg,
+            transparent 0deg, rgba(255,255,255,0.20) 8deg, transparent 22deg,
+            transparent 180deg, rgba(255,255,255,0.12) 190deg, transparent 205deg,
+            transparent 360deg);
+        opacity: 0;
+        transition: opacity .5s;
+        animation: girar 1.8s linear infinite;
+        animation-play-state: paused;
+    }
+    #tela-disco .brilho-vinil.ativo { opacity: 1; animation-play-state: running; }
+
+    #tela-disco .rotulo {
+        position: absolute;
+        inset: 33%;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.4), inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+    #tela-disco .rotulo svg { width: 100%; height: 100%; }
+
+    #tela-disco .furo-central {
+        position: absolute;
+        left: 50%; top: 50%;
+        width: 3.5%; height: 3.5%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: radial-gradient(circle, #444, #000 70%);
+        box-shadow: 0 0 3px rgba(0,0,0,0.8);
+        z-index: 3;
+    }
+
+    @keyframes girar { to { transform: rotate(360deg); } }
+
+    #tela-disco .base-braco {
+        position: absolute;
+        top: 1%;
+        right: 1%;
+        width: 13%;
+        height: 13%;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, #cbb46a, #8a7233 60%, #4c3e17);
+        box-shadow: 0 3px 6px rgba(0,0,0,0.6);
+        z-index: 5;
+    }
+
+    #tela-disco .luz-braco {
+        position: absolute;
+        top: 3.2%;
+        right: 3.2%;
+        width: 5%;
+        height: 5%;
+        border-radius: 50%;
+        background: #4a0808;
+        z-index: 6;
+        transition: background .3s, box-shadow .3s;
+    }
+    #tela-disco .luz-braco.acesa {
+        background: #ff3b30;
+        box-shadow: 0 0 6px 2px rgba(255,59,48,0.9), 0 0 14px 4px rgba(255,59,48,0.5);
+        animation: piscar 2.6s ease-in-out infinite;
+    }
+
+    #tela-disco .braco {
+        position: absolute;
+        top: 6%;
+        right: 6%;
+        width: 56%;
+        height: 6px;
+        transform-origin: 94% 50%;
+        transform: rotate(-32deg);
+        transition: transform 1s cubic-bezier(.4,1.4,.4,1);
+        z-index: 5;
+    }
+    #tela-disco .braco.pousado { transform: rotate(6deg); }
+
+    #tela-disco .haste {
+        width: 100%; height: 100%;
+        border-radius: 3px;
+        background: linear-gradient(180deg, #e4d59a, #a68a3f 45%, #6b551e);
+        box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+    }
+
+    #tela-disco .cabecote {
+        position: absolute;
+        left: -6%; top: -60%;
+        width: 16%; height: 220%;
+        background: linear-gradient(160deg, #333, #111);
+        border-radius: 3px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    }
+
+    #tela-disco .agulha {
+        position: absolute;
+        left: -2%; bottom: -55%;
+        width: 3px; height: 55%;
+        background: #ddd;
+        border-radius: 1px;
+    }
+
+    #tela-disco .glint {
+        position: absolute;
+        left: -3px; bottom: -58%;
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #fff, rgba(255,255,255,0));
+        opacity: 0;
+    }
+    #tela-disco .braco.pousado.vibrando .glint {
+        animation: cintilar 1.8s ease-in-out infinite;
+    }
+    @keyframes cintilar {
+        0%, 80%, 100% { opacity: 0; }
+        85% { opacity: .9; }
+        90% { opacity: .2; }
+        95% { opacity: .8; }
+    }
+
+    @keyframes vibrar {
+        0%, 100% { transform: rotate(6deg); }
+        50% { transform: rotate(7.4deg); }
+    }
+    #tela-disco .braco.pousado.vibrando { animation: vibrar 0.55s ease-in-out infinite; }
+
+    #tela-disco .controles {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 480px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(160deg, #3a3a3a, #161616 60%, #050505);
+        border: 2px solid #1a1a1a;
+        border-radius: 12px;
+        padding: 1.4vh 5vw;
+        box-shadow: 0 3px 0 rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    #tela-disco .btn-energia {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        background: radial-gradient(circle at 34% 28%, #ff7a6a 0%, #e5271f 32%, #b30f0f 62%, #650707 100%);
+        box-shadow:
+            0 0 0 2px #140404,
+            0 4px 8px rgba(0,0,0,0.55),
+            inset 0 -5px 8px rgba(0,0,0,0.5),
+            inset 0 4px 6px rgba(255,255,255,0.28);
+        z-index: 1;
+        transition: transform 0.16s cubic-bezier(.34,1.56,.64,1), box-shadow 0.16s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* anel metálico atrás do botão, tipo bezel de botão físico */
+    #tela-disco .btn-energia::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        z-index: -1;
+        background: conic-gradient(from 210deg, #fdfdfd, #9c9c9c 12%, #f2f2f2 25%, #7d7d7d 42%, #e8e8e8 55%, #8c8c8c 70%, #fafafa 85%, #9c9c9c 100%);
+        box-shadow: 0 0 0 1.5px #000, 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    /* brilho superior no botão vermelho */
+    #tela-disco .btn-energia::after {
+        content: "";
+        position: absolute;
+        top: 10%;
+        left: 18%;
+        width: 58%;
+        height: 24%;
+        background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0));
+        border-radius: 50%;
+        filter: blur(1.2px);
+        transform: rotate(-10deg);
+        pointer-events: none;
+    }
+
+    #tela-disco .btn-energia svg {
+        position: relative;
+        z-index: 1;
+        width: 46%;
+        height: 46%;
+    }
+
+    #tela-disco .btn-energia svg path {
+        stroke: #260a0a;
+    }
+
+    #tela-disco .btn-energia.pressionando,
+    #tela-disco .btn-energia:active {
+        transform: scale(0.87) translateY(2px);
+        box-shadow:
+            0 0 0 2px #140404,
+            0 1px 3px rgba(0,0,0,0.5),
+            inset 0 -2px 4px rgba(0,0,0,0.6),
+            inset 0 2px 3px rgba(255,255,255,0.12);
+    }
+
+    #tela-disco .btn-energia.ligado {
+        background: radial-gradient(circle at 34% 28%, #8dff8a 0%, #27b31f 32%, #0f6a0f 62%, #073d07 100%);
+    }
+
+    #tela-disco .btn-energia.ligado svg path { stroke: #0a2a0a; }
+
+    #tela-disco .grupo-volume { display: flex; gap: 12px; }
+
+    #tela-disco .btn-vol {
+        width: 38px; height: 38px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        color: #e4c76a;
+        background: linear-gradient(160deg, #8a7233, #4c3e17);
+        box-shadow: 0 4px 0 #241d0a, inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    #tela-disco .btn-vol:active { transform: translateY(3px); box-shadow: 0 1px 0 #241d0a; }
+
+    #tela-disco .btn-voltar {
+        position: absolute;
+        top: max(14px, env(safe-area-inset-top));
+        left: 14px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(20,14,4,0.82);
+        color: #e4c76a;
+        border: 1px solid #4c3e17;
+        border-radius: 20px;
+        padding: 8px 14px 8px 10px;
+        font-family: 'Oswald', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        backdrop-filter: blur(4px);
+    }
+
+    #tela-disco .btn-voltar:active { transform: scale(0.96); }
+
+    #tela-disco .btn-timer {
+        position: absolute;
+        top: max(14px, env(safe-area-inset-top));
+        right: 14px;
+        z-index: 10;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(20,14,4,0.82);
+        color: #e4c76a;
+        border: 1px solid #4c3e17;
+        border-radius: 50%;
+        cursor: pointer;
+        backdrop-filter: blur(4px);
+    }
+    #tela-disco .btn-timer svg { width: 19px; height: 19px; }
+    #tela-disco .btn-timer.ativo {
+        border-color: #d99a3d;
+        box-shadow: 0 0 8px 2px rgba(217,154,61,0.55);
+    }
+    #tela-disco .btn-timer:active { transform: scale(0.94); }
+
+    #tela-disco .timer-badge {
+        position: absolute;
+        bottom: -9px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #d99a3d;
+        color: #100b02;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 8px;
+        white-space: nowrap;
+        display: none;
+    }
+
+    #tela-disco .timer-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        background: rgba(0,0,0,0.65);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    #tela-disco .timer-overlay.aberto { display: flex; }
+
+    #tela-disco .timer-modal {
+        width: 100%;
+        max-width: 320px;
+        background: linear-gradient(160deg, #241a0d, #120c05);
+        border: 1px solid #4c3e17;
+        border-radius: 14px;
+        padding: 22px 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    #tela-disco .timer-modal h3 {
+        font-family: 'Righteous', cursive;
+        color: #d99a3d;
+        font-size: 16px;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+    }
+
+    #tela-disco .timer-status {
+        font-family: 'Share Tech Mono', monospace;
+        color: #b0a179;
+        font-size: 12px;
+        margin-bottom: 16px;
+        min-height: 16px;
+    }
+
+    #tela-disco .timer-opcoes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+    #tela-disco .timer-opcoes button {
+        padding: 12px 0;
+        border-radius: 8px;
+        border: none;
+        background: linear-gradient(160deg, #8a7233, #4c3e17);
+        color: #f2e6c9;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    #tela-disco .timer-opcoes button:active { transform: scale(0.96); }
+
+    #tela-disco .timer-cancelar {
+        width: 100%;
+        padding: 10px 0;
+        border-radius: 8px;
+        border: 1px solid #7a1f1f;
+        background: transparent;
+        color: #d9673d;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        cursor: pointer;
+        margin-bottom: 8px;
+    }
+    #tela-disco .timer-cancelar:disabled {
+        opacity: .35;
+        cursor: default;
+    }
+
+    #tela-disco .timer-fechar {
+        width: 100%;
+        padding: 10px 0;
+        border-radius: 8px;
+        border: 1px solid #4c3e17;
+        background: transparent;
+        color: #b0a179;
+        font-family: 'Oswald', sans-serif;
+        font-size: 13px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+    <!-- ================= TELA MENU ================= -->
+    <div id="tela-menu" style="display:flex;">
+
+        <div class="letreiro">
+            <div class="logo-radio-wrap">
+                <div class="logo-skyline-badge"></div>
+                <div class="logo-radio">
+                <img src="data:image/webp;base64,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" alt="Rádio 10uilton">
+                <div class="logo-brilho-varredura"></div>
+                </div>
+            </div>
+            <div class="neon-titulo">
+                <span class="vermelho">RÁDIO</span> <span class="amarelo">10UILTON</span>
+            </div>
+            <div class="neon-frase">Ritmo &amp; Poesia</div>
+
+            <div class="redes">
+                <a class="rede-link" href="https://www.instagram.com/10uilton" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="#7fffd4" stroke-width="1.8"/>
+                        <circle cx="12" cy="12" r="4.3" stroke="#7fffd4" stroke-width="1.8"/>
+                        <circle cx="17.4" cy="6.6" r="1.15" fill="#7fffd4"/>
+                    </svg>
+                </a>
+                <a class="rede-link" href="https://www.x.com/10uilton" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4l16 16M20 4L4 20" stroke="#7fffd4" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <a class="rede-link" href="https://www.tiktok.com/@10uilton" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 3v10.6a3.1 3.1 0 1 1-2.6-3.06V7.5a5.1 5.1 0 1 0 4.6 5.08V9.2a6.8 6.8 0 0 0 4 1.3V7.5a3.9 3.9 0 0 1-3.9-3.9V3h-2.1z" fill="#7fffd4"/>
+                    </svg>
+                </a>
+                <a class="rede-link" href="https://youtube.com/@10uilton" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2.2" y="5.5" width="19.6" height="13" rx="4" stroke="#7fffd4" stroke-width="1.8"/>
+                        <path d="M10.3 9.3v5.4l4.7-2.7-4.7-2.7z" fill="#7fffd4"/>
+                    </svg>
+                </a>
+                <a class="rede-link" href="https://10uilton.blogspot.com" target="_blank" rel="noopener noreferrer" aria-label="Blog">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="9.2" stroke="#7fffd4" stroke-width="1.8"/>
+                        <path d="M2.8 12h18.4M12 2.8c2.4 2.6 3.7 5.8 3.7 9.2s-1.3 6.6-3.7 9.2c-2.4-2.6-3.7-5.8-3.7-9.2S9.6 5.4 12 2.8z" stroke="#7fffd4" stroke-width="1.4"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="opcoes">
+            <button class="btn-opcao caixa" onclick="mostrarTela('caixa')">
+                <span class="icone-opcao">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9v6h4l5 5V4L7 9H3z" fill="#ff6666"/>
+                        <path d="M16 8.5c1.2 1 1.9 2.2 1.9 3.5s-.7 2.5-1.9 3.5" stroke="#ff9999" stroke-width="1.6" stroke-linecap="round"/>
+                        <path d="M18.6 6c2 1.6 3.2 3.6 3.2 6s-1.2 4.4-3.2 6" stroke="#ff9999" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="texto-opcao">
+                    <span class="titulo-opcao">Caixa Amplificada</span>
+                    <span class="sub-opcao">Ouça na caixa amplificada</span>
+                </span>
+            </button>
+
+            <button class="btn-opcao disco" onclick="mostrarTela('disco')">
+                <span class="icone-opcao">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="9.5" fill="#2c2c2c" stroke="#ffb100" stroke-width="1"/>
+                        <circle cx="12" cy="12" r="6.5" fill="none" stroke="#ffb100" stroke-width="0.7" opacity="0.6"/>
+                        <circle cx="12" cy="12" r="4.2" fill="none" stroke="#ffb100" stroke-width="0.7" opacity="0.6"/>
+                        <circle cx="12" cy="12" r="2.4" fill="#c23b2c"/>
+                        <circle cx="12" cy="12" r="0.9" fill="#0a0a0a"/>
+                    </svg>
+                </span>
+                <span class="texto-opcao">
+                    <span class="titulo-opcao">Toca-Discos</span>
+                    <span class="sub-opcao">Ouça no toca-discos retrô</span>
+                </span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- ================= TELA CAIXA AMPLIFICADA ================= -->
+    <div id="tela-caixa">
+
+        <button class="btn-voltar" onclick="mostrarTela('menu')">← Voltar</button>
+
+        <button class="btn-timer" id="btnTimerCaixa" onclick="caixaAbrirTimerModal()" aria-label="Timer para dormir">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.5 14.5A8 8 0 1 1 9.5 3.5a6.5 6.5 0 0 0 11 11z" stroke="#ccc" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+            <span class="timer-badge" id="timerBadgeCaixa"></span>
+        </button>
+
+        <div class="timer-overlay" id="timerOverlayCaixa">
+            <div class="timer-modal">
+                <h3>Timer para Dormir</h3>
+                <div class="timer-status" id="timerStatusCaixa">Nenhum timer ativo</div>
+                <div class="timer-opcoes">
+                    <button onclick="caixaDefinirTimer(15)">15 min</button>
+                    <button onclick="caixaDefinirTimer(30)">30 min</button>
+                    <button onclick="caixaDefinirTimer(45)">45 min</button>
+                    <button onclick="caixaDefinirTimer(60)">60 min</button>
+                    <button onclick="caixaDefinirTimer(90)">90 min</button>
+                    <button onclick="caixaDefinirTimer(120)">120 min</button>
+                </div>
+                <button class="timer-cancelar" id="btnCancelarTimerCaixa" onclick="caixaCancelarTimer(true)" disabled>Cancelar Timer</button>
+                <button class="timer-fechar" onclick="caixaFecharTimerModal()">Fechar</button>
+            </div>
+        </div>
+
+        <div class="caixa-som">
+
+            <div class="painel-topo">
+                <div class="marca">RÁDIO 10UILTON</div>
+                <div id="ledDisplayCaixa" class="led-digital led-desligado">OFFLINE</div>
+            </div>
+
+            <div class="alto-falantes">
+                <div class="anel-luz" id="anel1">
+                    <div class="bocao" id="bocao1"><div class="cone"><div class="calota-central"></div></div></div>
+                </div>
+                <div class="anel-luz" id="anel2">
+                    <div class="bocao" id="bocao2"><div class="cone"><div class="calota-central"></div></div></div>
+                </div>
+            </div>
+
+            <div class="controles">
+                <button class="btn btn-energia" id="btnPowerCaixa" onclick="caixaAlternarEnergia()" aria-label="Ligar/Desligar">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3v8" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M7 6.2a7.2 7.2 0 1 0 10 0" stroke-width="3" stroke-linecap="round" fill="none"/>
+                    </svg>
+                </button>
+                <div class="grupo-volume">
+                    <button class="btn btn-vol" onclick="caixaMudarVolume(-0.1)">-</button>
+                    <button class="btn btn-vol" onclick="caixaMudarVolume(0.1)">+</button>
+                </div>
+            </div>
+
+        </div>
+
+        <audio id="playerAudioCaixa" src="https://usa3.fastcast4u.com/proxy/radio10uilton?mp=/1" preload="none"></audio>
+
+    </div>
+
+    <!-- ================= TELA TOCA-DISCOS ================= -->
+    <div id="tela-disco">
+
+        <button class="btn-voltar" onclick="mostrarTela('menu')">← Voltar</button>
+
+        <button class="btn-timer" id="btnTimerDisco" onclick="discoAbrirTimerModal()" aria-label="Timer para dormir">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.5 14.5A8 8 0 1 1 9.5 3.5a6.5 6.5 0 0 0 11 11z" stroke="#e4c76a" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+            <span class="timer-badge" id="timerBadgeDisco"></span>
+        </button>
+
+        <div class="timer-overlay" id="timerOverlayDisco">
+            <div class="timer-modal">
+                <h3>Timer para Dormir</h3>
+                <div class="timer-status" id="timerStatusDisco">Nenhum timer ativo</div>
+                <div class="timer-opcoes">
+                    <button onclick="discoDefinirTimer(15)">15 min</button>
+                    <button onclick="discoDefinirTimer(30)">30 min</button>
+                    <button onclick="discoDefinirTimer(45)">45 min</button>
+                    <button onclick="discoDefinirTimer(60)">60 min</button>
+                    <button onclick="discoDefinirTimer(90)">90 min</button>
+                    <button onclick="discoDefinirTimer(120)">120 min</button>
+                </div>
+                <button class="timer-cancelar" id="btnCancelarTimerDisco" onclick="discoCancelarTimer(true)" disabled>Cancelar Timer</button>
+                <button class="timer-fechar" onclick="discoFecharTimerModal()">Fechar</button>
+            </div>
+        </div>
+
+        <div class="movel">
+            <div class="luz-ambiente" id="luzAmbiente"></div>
+
+            <div class="painel-led">
+                <div class="cabecalho-painel">
+                    <span class="piloto" id="piloto1"></span>
+                    <span class="marca">RÁDIO 10UILTON</span>
+                    <span class="piloto" id="piloto2"></span>
+                </div>
+                <div class="visor">
+                    <div class="led-texto led-off" id="ledDisplayDisco">OFFLINE</div>
+                    <div class="equalizador" id="equalizador">
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pratos">
+
+                <div class="toca-disco">
+                    <div class="base-prato"></div>
+                    <div class="feltro"></div>
+                    <div class="vinil" id="vinil1">
+                        <div class="brilho-vinil" id="brilho1"></div>
+                        <div class="rotulo" id="rotulo1"></div>
+                    </div>
+                    <div class="furo-central"></div>
+                    <div class="base-braco"></div>
+                    <div class="luz-braco" id="luz1"></div>
+                    <div class="braco" id="braco1">
+                        <div class="haste">
+                            <div class="cabecote"><div class="agulha"></div><div class="glint"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toca-disco">
+                    <div class="base-prato"></div>
+                    <div class="feltro"></div>
+                    <div class="vinil" id="vinil2">
+                        <div class="brilho-vinil" id="brilho2"></div>
+                        <div class="rotulo" id="rotulo2"></div>
+                    </div>
+                    <div class="furo-central"></div>
+                    <div class="base-braco"></div>
+                    <div class="luz-braco" id="luz2"></div>
+                    <div class="braco" id="braco2">
+                        <div class="haste">
+                            <div class="cabecote"><div class="agulha"></div><div class="glint"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="controles">
+                <button class="btn-power btn-energia" id="btnPowerDisco" onclick="discoAlternarEnergia()" aria-label="Ligar/Desligar">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3v8" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M7 6.2a7.2 7.2 0 1 0 10 0" stroke-width="3" stroke-linecap="round" fill="none"/>
+                    </svg>
+                </button>
+                <div class="grupo-volume">
+                    <button class="btn-vol" onclick="discoMudarVolume(-0.1)">−</button>
+                    <button class="btn-vol" onclick="discoMudarVolume(0.1)">+</button>
+                </div>
+            </div>
+
+        </div>
+
+        <audio id="playerAudioDisco" src="https://usa3.fastcast4u.com/proxy/radio10uilton?mp=/1" preload="none"></audio>
+
+    </div>
+
+    <script>
+        // ===== NAVEGAÇÃO ENTRE TELAS =====
+        function mostrarTela(nome) {
+            if (nome !== 'caixa' && window.caixaDesligarSeLigado) window.caixaDesligarSeLigado();
+            if (nome !== 'disco' && window.discoDesligarSeLigado) window.discoDesligarSeLigado();
+
+            document.getElementById('tela-menu').style.display = 'none';
+            document.getElementById('tela-caixa').style.display = 'none';
+            document.getElementById('tela-disco').style.display = 'none';
+
+            document.getElementById('tela-' + nome).style.display = 'flex';
+        }
+    </script>
+
+    <script>
+    // ===== LÓGICA DA CAIXA AMPLIFICADA =====
+    (function () {
+        const audio = document.getElementById('playerAudioCaixa');
+        const btnPower = document.getElementById('btnPowerCaixa');
+        const ledDisplay = document.getElementById('ledDisplayCaixa');
+        const bocao1 = document.getElementById('bocao1');
+        const bocao2 = document.getElementById('bocao2');
+        const anel1 = document.getElementById('anel1');
+        const anel2 = document.getElementById('anel2');
+
+        let estaLigado = false;
+        let intervaloLuz = null;
+        let matiz = 0;
+
+        // Animação tátil de pressionar o botão (empurra e volta com "mola")
+        ['pointerdown'].forEach(evt => btnPower.addEventListener(evt, () => btnPower.classList.add('pressionando')));
+        ['pointerup', 'pointerleave', 'pointercancel'].forEach(evt => btnPower.addEventListener(evt, () => btnPower.classList.remove('pressionando')));
+
+        function alternarEnergia() {
+            estaLigado = !estaLigado;
+
+            if (estaLigado) {
+                btnPower.classList.add('ligado');
+                ledDisplay.classList.remove('led-desligado');
+                ledDisplay.innerText = "CONECTANDO...";
+
+                audio.play()
+                    .then(() => {
+                        atualizarLedVolume();
+                        bocao1.classList.add('pulsando', 'ativo');
+                        bocao2.classList.add('pulsando', 'ativo');
+                        anel1.classList.add('ativo');
+                        anel2.classList.add('ativo');
+                        iniciarLuzes();
+                    })
+                    .catch(error => {
+                        ledDisplay.innerText = "ERRO DE CONEXÃO";
+                        console.log("Erro ao reproduzir áudio:", error);
+                    });
+            } else {
+                audio.pause();
+                btnPower.classList.remove('ligado');
+                ledDisplay.classList.add('led-desligado');
+                ledDisplay.innerText = "OFFLINE";
+
+                bocao1.classList.remove('pulsando', 'ativo');
+                bocao2.classList.remove('pulsando', 'ativo');
+                anel1.classList.remove('ativo');
+                anel2.classList.remove('ativo');
+                pararLuzes();
+                cancelarTimer(false);
+            }
+        }
+
+        function mudarVolume(valor) {
+            if (!estaLigado) return;
+            let novoVolume = audio.volume + valor;
+            if (novoVolume > 1.0) novoVolume = 1.0;
+            if (novoVolume < 0.0) novoVolume = 0.0;
+            audio.volume = novoVolume;
+            atualizarLedVolume();
+        }
+
+        function atualizarLedVolume() {
+            let volPercentual = Math.round(audio.volume * 100);
+            ledDisplay.innerText = `LIGADA | VOL: ${volPercentual}%`;
+        }
+
+        // Efeito de luzes tipo "VU meter" nos bocões, com cor que muda
+        // suavemente. Não usa análise real do fluxo de áudio (streams de
+        // rádio geralmente bloqueiam isso por CORS e o som pode ficar mudo),
+        // então simulamos um brilho pulsante e reativo para dar a sensação
+        // de luzes reais acompanhando a música.
+        function iniciarLuzes() {
+            pararLuzes();
+            intervaloLuz = setInterval(() => {
+                matiz = (matiz + 12) % 360;
+                const brilho1 = (0.35 + Math.random() * 0.65).toFixed(2);
+                const brilho2 = (0.35 + Math.random() * 0.65).toFixed(2);
+
+                bocao1.style.setProperty('--glow', brilho1);
+                bocao1.style.setProperty('--cor-luz', `hsla(${matiz}, 90%, 55%, 0.75)`);
+                anel1.style.setProperty('--glow', brilho1);
+
+                const matiz2 = (matiz + 180) % 360;
+                bocao2.style.setProperty('--glow', brilho2);
+                bocao2.style.setProperty('--cor-luz', `hsla(${matiz2}, 90%, 55%, 0.75)`);
+                anel2.style.setProperty('--glow', brilho2);
+            }, 130);
+        }
+
+        function pararLuzes() {
+            if (intervaloLuz) {
+                clearInterval(intervaloLuz);
+                intervaloLuz = null;
+            }
+        }
+
+        // ===== TIMER PARA DORMIR =====
+        const btnTimer = document.getElementById('btnTimerCaixa');
+        const timerBadge = document.getElementById('timerBadgeCaixa');
+        const timerOverlay = document.getElementById('timerOverlayCaixa');
+        const timerStatus = document.getElementById('timerStatusCaixa');
+        const btnCancelarTimer = document.getElementById('btnCancelarTimerCaixa');
+
+        let timerTimeoutId = null;
+        let timerFimEm = null;
+        let timerAtualizacaoId = null;
+
+        function abrirTimerModal() {
+            timerOverlay.classList.add('aberto');
+            atualizarStatusModal();
+        }
+
+        function fecharTimerModal() {
+            timerOverlay.classList.remove('aberto');
+        }
+
+        function definirTimer(minutos) {
+            cancelarTimer(false);
+            const ms = minutos * 60 * 1000;
+            timerFimEm = Date.now() + ms;
+
+            timerTimeoutId = setTimeout(() => {
+                timerTimeoutId = null;
+                timerFimEm = null;
+                pararAtualizacaoBadge();
+                btnTimer.classList.remove('ativo');
+                timerBadge.style.display = 'none';
+                if (estaLigado) alternarEnergia();
+            }, ms);
+
+            btnTimer.classList.add('ativo');
+            iniciarAtualizacaoBadge();
+            fecharTimerModal();
+        }
+
+        function cancelarTimer(fecharModal) {
+            if (timerTimeoutId) { clearTimeout(timerTimeoutId); timerTimeoutId = null; }
+            timerFimEm = null;
+            pararAtualizacaoBadge();
+            btnTimer.classList.remove('ativo');
+            timerBadge.style.display = 'none';
+            if (fecharModal) {
+                atualizarStatusModal();
+                fecharTimerModal();
+            }
+        }
+
+        function iniciarAtualizacaoBadge() {
+            pararAtualizacaoBadge();
+            atualizarBadge();
+            timerAtualizacaoId = setInterval(atualizarBadge, 1000);
+        }
+
+        function pararAtualizacaoBadge() {
+            if (timerAtualizacaoId) { clearInterval(timerAtualizacaoId); timerAtualizacaoId = null; }
+        }
+
+        function atualizarBadge() {
+            if (!timerFimEm) { timerBadge.style.display = 'none'; return; }
+            const restanteMs = Math.max(0, timerFimEm - Date.now());
+            const min = Math.floor(restanteMs / 60000);
+            const seg = Math.floor((restanteMs % 60000) / 1000);
+            timerBadge.textContent = `${min}:${seg.toString().padStart(2, '0')}`;
+            timerBadge.style.display = 'block';
+            atualizarStatusModal();
+        }
+
+        function atualizarStatusModal() {
+            if (!timerFimEm) {
+                timerStatus.textContent = 'Nenhum timer ativo';
+                btnCancelarTimer.disabled = true;
+                return;
+            }
+            const restanteMs = Math.max(0, timerFimEm - Date.now());
+            const min = Math.floor(restanteMs / 60000);
+            const seg = Math.floor((restanteMs % 60000) / 1000);
+            timerStatus.textContent = `Desliga em ${min}:${seg.toString().padStart(2, '0')}`;
+            btnCancelarTimer.disabled = false;
+        }
+
+        // Exposição global para uso nos onclick do HTML e na navegação entre telas
+        window.caixaAlternarEnergia = alternarEnergia;
+        window.caixaMudarVolume = mudarVolume;
+        window.caixaAbrirTimerModal = abrirTimerModal;
+        window.caixaFecharTimerModal = fecharTimerModal;
+        window.caixaDefinirTimer = definirTimer;
+        window.caixaCancelarTimer = cancelarTimer;
+        window.caixaDesligarSeLigado = function () {
+            if (estaLigado) alternarEnergia();
+        };
+    })();
+    </script>
+
+    <script>
+    // ===== LÓGICA DO TOCA-DISCOS =====
+    (function () {
+        function montarRotulo(elId, corA, corB) {
+            const el = document.getElementById(elId);
+            el.innerHTML = `
+            <svg viewBox="0 0 100 100">
+                <defs>
+                    <path id="curva-${elId}" d="M 50,50 m -33,0 a 33,33 0 1,1 66,0 a 33,33 0 1,1 -66,0" />
+                    <radialGradient id="grad-${elId}" cx="42%" cy="36%" r="75%">
+                        <stop offset="0%" stop-color="${corA}"/>
+                        <stop offset="72%" stop-color="${corA}"/>
+                        <stop offset="100%" stop-color="${corB}"/>
+                    </radialGradient>
+                    <filter id="papel-${elId}">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="ruido"/>
+                        <feColorMatrix in="ruido" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/>
+                    </filter>
+                </defs>
+                <circle cx="50" cy="50" r="48" fill="#f2ead9" stroke="#000" stroke-width="0.6"/>
+                <circle cx="50" cy="50" r="45" fill="url(#grad-${elId})"/>
+                <circle cx="50" cy="50" r="45" fill="#000" filter="url(#papel-${elId})"/>
+                <text font-family="Oswald, sans-serif" font-size="8" font-weight="700" fill="#f2e6c9" letter-spacing="1.5">
+                    <textPath href="#curva-${elId}" startOffset="2">RÁDIO 10UILTON • RÁDIO 10UILTON •</textPath>
+                </text>
+                <circle cx="50" cy="50" r="19" fill="none" stroke="#000" stroke-width="0.4" opacity="0.35"/>
+                <circle cx="50" cy="50" r="10.5" fill="#12100c"/>
+                <circle cx="50" cy="50" r="10.5" fill="none" stroke="${corA}" stroke-width="0.8"/>
+            </svg>`;
+        }
+        montarRotulo('rotulo1', '#c23b2c', '#7a1f16');
+        montarRotulo('rotulo2', '#2c6b8a', '#173f52');
+
+        const audio = document.getElementById('playerAudioDisco');
+        const btnPower = document.getElementById('btnPowerDisco');
+        const ledDisplay = document.getElementById('ledDisplayDisco');
+        const vinil1 = document.getElementById('vinil1');
+        const vinil2 = document.getElementById('vinil2');
+        const braco1 = document.getElementById('braco1');
+        const braco2 = document.getElementById('braco2');
+        const luz1 = document.getElementById('luz1');
+        const luz2 = document.getElementById('luz2');
+        const brilho1 = document.getElementById('brilho1');
+        const brilho2 = document.getElementById('brilho2');
+        const luzAmbiente = document.getElementById('luzAmbiente');
+        const piloto1 = document.getElementById('piloto1');
+        const piloto2 = document.getElementById('piloto2');
+        const barrasEq = document.querySelectorAll('#equalizador span');
+
+        ['pointerdown'].forEach(evt => btnPower.addEventListener(evt, () => btnPower.classList.add('pressionando')));
+        ['pointerup', 'pointerleave', 'pointercancel'].forEach(evt => btnPower.addEventListener(evt, () => btnPower.classList.remove('pressionando')));
+
+        let estaLigado = false;
+        let intervaloEq = null;
+
+        function alternarEnergia() {
+            estaLigado = !estaLigado;
+
+            if (estaLigado) {
+                btnPower.classList.add('ligado');
+                ledDisplay.classList.remove('led-off');
+                ledDisplay.classList.add('piscando');
+                ledDisplay.innerText = "CONECTANDO...";
+                piloto1.classList.add('aceso');
+                luzAmbiente.classList.add('acesa');
+
+                audio.play()
+                    .then(() => {
+                        atualizarLed();
+                        ledDisplay.classList.remove('piscando');
+
+                        braco1.classList.add('pousado');
+                        braco2.classList.add('pousado');
+
+                        vinil1.classList.add('acelerando');
+                        vinil2.classList.add('acelerando');
+                        brilho1.classList.add('ativo');
+                        brilho2.classList.add('ativo');
+
+                        setTimeout(() => {
+                            vinil1.classList.remove('acelerando');
+                            vinil2.classList.remove('acelerando');
+                            vinil1.classList.add('tocando');
+                            vinil2.classList.add('tocando');
+                            braco1.classList.add('vibrando');
+                            braco2.classList.add('vibrando');
+                            luz1.classList.add('acesa');
+                            luz2.classList.add('acesa');
+                            piloto2.classList.add('aceso');
+                        }, 1300);
+
+                        iniciarEqualizador();
+                    })
+                    .catch(error => {
+                        ledDisplay.classList.remove('piscando');
+                        ledDisplay.innerText = "ERRO DE CONEXÃO";
+                        console.log("Erro ao reproduzir áudio:", error);
+                    });
+            } else {
+                audio.pause();
+                btnPower.classList.remove('ligado');
+                ledDisplay.classList.add('led-off');
+                ledDisplay.innerText = "OFFLINE";
+                piloto1.classList.remove('aceso');
+                piloto2.classList.remove('aceso');
+                luzAmbiente.classList.remove('acesa');
+
+                braco1.classList.remove('pousado', 'vibrando');
+                braco2.classList.remove('pousado', 'vibrando');
+                vinil1.classList.remove('tocando', 'acelerando');
+                vinil2.classList.remove('tocando', 'acelerando');
+                brilho1.classList.remove('ativo');
+                brilho2.classList.remove('ativo');
+                luz1.classList.remove('acesa');
+                luz2.classList.remove('acesa');
+                pararEqualizador();
+                cancelarTimer(false);
+            }
+        }
+
+        function mudarVolume(valor) {
+            if (!estaLigado) return;
+            let novoVolume = audio.volume + valor;
+            if (novoVolume > 1.0) novoVolume = 1.0;
+            if (novoVolume < 0.0) novoVolume = 0.0;
+            audio.volume = novoVolume;
+            atualizarLed();
+        }
+
+        function atualizarLed() {
+            let volPercentual = Math.round(audio.volume * 100);
+            ledDisplay.innerText = `TOCANDO | VOL: ${volPercentual}%`;
+        }
+
+        // Barras de equalizador simuladas (streams externos bloqueiam análise real por CORS)
+        function iniciarEqualizador() {
+            pararEqualizador();
+            intervaloEq = setInterval(() => {
+                barrasEq.forEach(b => {
+                    const altura = 20 + Math.random() * 80;
+                    b.style.height = altura + '%';
+                    b.classList.add('on');
+                });
+            }, 160);
+        }
+        function pararEqualizador() {
+            if (intervaloEq) { clearInterval(intervaloEq); intervaloEq = null; }
+            barrasEq.forEach(b => { b.style.height = '20%'; b.classList.remove('on'); });
+        }
+
+        // ===== TIMER PARA DORMIR =====
+        const btnTimer = document.getElementById('btnTimerDisco');
+        const timerBadge = document.getElementById('timerBadgeDisco');
+        const timerOverlay = document.getElementById('timerOverlayDisco');
+        const timerStatus = document.getElementById('timerStatusDisco');
+        const btnCancelarTimer = document.getElementById('btnCancelarTimerDisco');
+
+        let timerTimeoutId = null;
+        let timerFimEm = null;
+        let timerAtualizacaoId = null;
+
+        function abrirTimerModal() {
+            timerOverlay.classList.add('aberto');
+            atualizarStatusModal();
+        }
+
+        function fecharTimerModal() {
+            timerOverlay.classList.remove('aberto');
+        }
+
+        function definirTimer(minutos) {
+            cancelarTimer(false);
+            const ms = minutos * 60 * 1000;
+            timerFimEm = Date.now() + ms;
+
+            timerTimeoutId = setTimeout(() => {
+                timerTimeoutId = null;
+                timerFimEm = null;
+                pararAtualizacaoBadge();
+                btnTimer.classList.remove('ativo');
+                timerBadge.style.display = 'none';
+                if (estaLigado) alternarEnergia();
+            }, ms);
+
+            btnTimer.classList.add('ativo');
+            iniciarAtualizacaoBadge();
+            fecharTimerModal();
+        }
+
+        function cancelarTimer(fecharModal) {
+            if (timerTimeoutId) { clearTimeout(timerTimeoutId); timerTimeoutId = null; }
+            timerFimEm = null;
+            pararAtualizacaoBadge();
+            btnTimer.classList.remove('ativo');
+            timerBadge.style.display = 'none';
+            if (fecharModal) {
+                atualizarStatusModal();
+                fecharTimerModal();
+            }
+        }
+
+        function iniciarAtualizacaoBadge() {
+            pararAtualizacaoBadge();
+            atualizarBadge();
+            timerAtualizacaoId = setInterval(atualizarBadge, 1000);
+        }
+
+        function pararAtualizacaoBadge() {
+            if (timerAtualizacaoId) { clearInterval(timerAtualizacaoId); timerAtualizacaoId = null; }
+        }
+
+        function atualizarBadge() {
+            if (!timerFimEm) { timerBadge.style.display = 'none'; return; }
+            const restanteMs = Math.max(0, timerFimEm - Date.now());
+            const min = Math.floor(restanteMs / 60000);
+            const seg = Math.floor((restanteMs % 60000) / 1000);
+            timerBadge.textContent = `${min}:${seg.toString().padStart(2, '0')}`;
+            timerBadge.style.display = 'block';
+            atualizarStatusModal();
+        }
+
+        function atualizarStatusModal() {
+            if (!timerFimEm) {
+                timerStatus.textContent = 'Nenhum timer ativo';
+                btnCancelarTimer.disabled = true;
+                return;
+            }
+            const restanteMs = Math.max(0, timerFimEm - Date.now());
+            const min = Math.floor(restanteMs / 60000);
+            const seg = Math.floor((restanteMs % 60000) / 1000);
+            timerStatus.textContent = `Desliga em ${min}:${seg.toString().padStart(2, '0')}`;
+            btnCancelarTimer.disabled = false;
+        }
+
+        // Exposição global para uso nos onclick do HTML e na navegação entre telas
+        window.discoAlternarEnergia = alternarEnergia;
+        window.discoMudarVolume = mudarVolume;
+        window.discoAbrirTimerModal = abrirTimerModal;
+        window.discoFecharTimerModal = fecharTimerModal;
+        window.discoDefinirTimer = definirTimer;
+        window.discoCancelarTimer = cancelarTimer;
+        window.discoDesligarSeLigado = function () {
+            if (estaLigado) alternarEnergia();
+        };
+    })();
+    </script>
+
+</body>
+</html>
